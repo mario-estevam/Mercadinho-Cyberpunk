@@ -1,0 +1,39 @@
+.home{
+    padding: 10vh;
+    margin: 5vh;
+}
+
+.navbar-brand{
+    padding-left: 10vh;
+}
+
+.nav-item{
+    padding-left: 60vh;
+}
+
+.nova{
+    padding-top: 50vh;
+}
+
+.doAdmin{
+    padding-top: 10vh;
+}
+
+.formulario{
+   padding-top: 5vh;
+    padding-left: 14vh;
+    padding-bottom: 30vh;
+}
+
+label{
+    padding: 10px;
+    text-align: justify;
+}
+
+#area{
+    padding-left: 10vh;
+}
+
+.erro{
+    color: red;
+}

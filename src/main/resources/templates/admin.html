@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/estilos.css}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+<div th:replace="fragments/commons :: header"></div>
+
+<p class="doAdmin"> <center> <a href="/cadastro" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cadastrar Novo Alimento</a> </center> </p>
+
+<div class="home">
+    <p><center>Lista de Alimentos Cadastrados</center></p>
+    <table  class="table table-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fabricado</th>
+            <th scope="col">Vencimento</th>
+            <th scope="col">Fornecedor</th>
+        </tr>
+        <tr th:each="alimento : ${listaAlimentos}">
+            <td th:text="${alimento.id}">ID</td>
+            <td th:text="${alimento.nome}">Nome</td>
+            <td th:text="${alimento.tipo}">Tipo</td>
+            <td th:text="${alimento.fabricado}">Fabricado</td>
+            <td th:text="${alimento.vencimento}">Vencimento</td>
+            <td th:text="${alimento.fornecedor}">Fornecedor</td>
+            <td><img width="100px" th:src="@{'/images/' + ${alimento.getImagemUri()}}" alt="imagem"/></td>
+            <td><a th:href="@{'/deletar/' + ${alimento.id}}">Deletar </a></td>
+            <td><a th:href="@{'/editar/' + ${alimento.id}}">Editar </a></td>
+
+        </tr>
+    </table>
+</div>
+
+<div class="nova">
+    <div th:replace="fragments/commons :: footer"></div>
+</div>
+
+
+</body>
+</html>
