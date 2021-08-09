@@ -12,11 +12,10 @@
     <h2>Edição de Alimentos</h2>
     <form method="post" th:object="${alimento}" th:action="@{/salvar}" enctype="multipart/form-data">
       <input type="text" readonly name="id" th:field="*{id}"> <br />
-        Nome: <input type="text" name="genero" th:field="*{nome}"> <br />
-        Tipo: <input type="text" name="titulo" th:field="*{tipo}"> <br />
-        Vencimento: <input type="text" name="anolancamento" th:field="*{vencimento}"> <br />
-        Fabricado: <input type="text" name="temporadas" th:field="*{fabricado}"> <br />
-        Fornecedor: <input type="text" name="episodios" th:field="*{fornecedor}"> <br />
+        Nome: <input type="text" name="nome" th:field="*{nome}"> <br />
+        Tipo: <input type="text" name="tipo" th:field="*{tipo}"> <br />
+        peso: <input type="text" name="peso" th:field="*{peso}"> <br />
+        Fornecedor: <input type="text" name="fornecedor" th:field="*{fornecedor}"> <br />
         Imagem: <input type="file" name="file"/><br />
       <button type="submit">Enviar</button>
     </form>

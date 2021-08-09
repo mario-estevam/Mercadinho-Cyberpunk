@@ -26,10 +26,8 @@ public class Alimento {
     String nome;
     @Size(min = 3, max = 10, message = Mensagem.ERRO_TAMANHO_STRING)
     String tipo;
-    String fabricado;
+    String peso;
     String fornecedor;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    LocalDate vencimento = LocalDate.now();
     String imagemUri;
     Date deleted;
 }

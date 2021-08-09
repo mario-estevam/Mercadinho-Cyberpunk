@@ -20,8 +20,7 @@
                 <label>Nome: </label> <input type="text" name="nome" th:field="*{nome}"> <br />
                 <label>Tipo:</label> <input type="text" name="tipo" th:field="*{tipo}"> <br />
                 <p class="erro" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"> </p>
-                <label>Fabricado:</label> <input type="text" name="vencimento" th:field="*{fabricado}"> <br />
-                <label>Vencimento:</label> <input type="text" name="fabricado" th:field="*{vencimento}"> <br />
+                <label>Peso:</label> <input type="text" name="peso" th:field="*{peso}"> <br />
                 <label>Fornecedor:</label> <input type="text" name="fornecedor" th:field="*{fornecedor}"> <br />
                 <label>Imagem:</label> <input type="file" name="file"/><br />
                 <button type="submit">Enviar</button>

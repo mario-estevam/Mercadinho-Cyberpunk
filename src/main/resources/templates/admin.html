@@ -19,16 +19,14 @@
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Fabricado</th>
-            <th scope="col">Vencimento</th>
+            <th scope="col">Peso</th>
             <th scope="col">Fornecedor</th>
         </tr>
         <tr th:each="alimento : ${listaAlimentos}">
             <td th:text="${alimento.id}">ID</td>
             <td th:text="${alimento.nome}">Nome</td>
             <td th:text="${alimento.tipo}">Tipo</td>
-            <td th:text="${alimento.fabricado}">Fabricado</td>
-            <td th:text="${alimento.vencimento}">Vencimento</td>
+            <td th:text="${alimento.peso}">Peso</td>
             <td th:text="${alimento.fornecedor}">Fornecedor</td>
             <td><img width="100px" th:src="@{'/images/' + ${alimento.getImagemUri()}}" alt="imagem"/></td>
             <td><a th:href="@{'/deletar/' + ${alimento.id}}">Deletar </a></td>
