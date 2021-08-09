@@ -32,4 +32,9 @@ public class AlimentoService {
     public Alimento findById(Long id){
         return repository.getById(id);
     }
+
+    public Alimento getOne(Long id) {
+        return this.repository.getOne(id);
+    }
+
 }

@@ -1,26 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/estilos.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 
     <div th:replace="fragments/commons :: header"></div>
 
+<div  data-aos="fade-up">
+    <form class="formulario" method="post" th:object="${alimento}" th:action="@{/salvar}" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Formulario de Edição de alimentos</legend>
+            <label>ID</label><input type="text" readonly name="id" th:field="*{id}"> <br />
+            <label>Nome: </label> <input  type="text" name="nome" th:field="*{nome}"> <br />
+            <label>Tipo:</label> <input type="text" name="tipo" th:field="*{tipo}"> <br />
+            <p class="erro" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"> </p>
+            <label>Peso:</label> <input type="text" name="peso" th:field="*{peso}"> <br />
+            <label>Fornecedor:</label> <input type="text" name="fornecedor" th:field="*{fornecedor}"> <br />
+            <label>Imagem:</label> <input type="file" name="file"/><br />
+            <button type="submit">Enviar</button>
 
-    <h2>Edição de Alimentos</h2>
-    <form method="post" th:object="${alimento}" th:action="@{/salvar}" enctype="multipart/form-data">
-      <input type="text" readonly name="id" th:field="*{id}"> <br />
-        Nome: <input type="text" name="nome" th:field="*{nome}"> <br />
-        Tipo: <input type="text" name="tipo" th:field="*{tipo}"> <br />
-        peso: <input type="text" name="peso" th:field="*{peso}"> <br />
-        Fornecedor: <input type="text" name="fornecedor" th:field="*{fornecedor}"> <br />
-        Imagem: <input type="file" name="file"/><br />
-      <button type="submit">Enviar</button>
+        </fieldset>
     </form>
+</div>
+
 
     <div th:replace="fragments/commons :: footer"></div>
 
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

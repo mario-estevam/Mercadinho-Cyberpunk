@@ -28,12 +28,22 @@
 label{
     padding: 10px;
     text-align: justify;
+
 }
 
 #area{
-    padding-left: 10vh;
+    padding-left: 70vh;
 }
 
 .erro{
     color: red;
+}
+
+.topz{
+    color: white;
+}
+
+fieldset{
+    text-align: justify;
+    justify-content: center;
 }

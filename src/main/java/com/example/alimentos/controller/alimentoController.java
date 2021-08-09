@@ -13,12 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class alimentoController {
@@ -36,11 +40,28 @@ public class alimentoController {
         this.service = service;
     }
 
-    @RequestMapping(value = {"/", "/Alimento"}, method = RequestMethod.GET)
+
+
+    @RequestMapping(value = {"/", "/Alimento"},  method = RequestMethod.GET)
     public String getHome(Model model){
         var listaAlimentos = service.findAll();
         model.addAttribute("listaAlimentos", listaAlimentos);
         return "index";
+    }
+
+    @RequestMapping(value = "/")
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        HttpSession session = request.getSession();
+        var out = response.getWriter();
+        var dataCriacao = new Date(session.getCreationTime());
+        var dataUltimoAcesso = new Date((session.getLastAccessedTime()));
+        var formatData = new SimpleDateFormat("dd/MM/yyyy--hh:mm:ss");
+
+        Cookie c = new Cookie("visita", formatData.format(dataCriacao));
+        c.setMaxAge(60*60*24);
+        response.addCookie(c);
+        out.println("Ultimo acesso: " +formatData.format(dataCriacao));
     }
 
     @RequestMapping(value = {"/admin" }, method = RequestMethod.GET)
@@ -87,17 +108,27 @@ public class alimentoController {
         return modelAndView;
     }
 
-//    @RequestMapping("/adicionarCarrinho")
-//    public void adicionar(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException {
-//        Alimento pali = new Alimento();
-//        HttpSession session = request.getSession();
-//        if (session.getAttribute("carrinho") == null){
-//            session.setAttribute("carrinho", new ArrayList<Alimento>());
-//        }
-//        ArrayList<Alimento> a = (ArrayList<Alimento>)session.getAttribute("carrinho");
-//        a.add(pali.(request.getParameter("id")));
+//    @RequestMapping("/adicionarcarrinho")
+//    public ModelAndView getHome(HttpSession session, @RequestParam(required = false) Long insertId, @RequestParam(required = false) Long removeId, @RequestParam(required = false) String message) {
+//        ModelAndView modelAndView = new ModelAndView("index");
 //
-//        response.sendRedirect("/cliente");
+//        List<Alimento> alimento = service.findAll();
+//        modelAndView.addObject("alimento", alimento);
+//
+//        ArrayList<Alimento> shoppingCartList = (ArrayList<Alimento>) session.getAttribute("shoppingCartList");
+//        if (shoppingCartList == null) {
+//            shoppingCartList = new ArrayList<>();
+//        }
+//        // se o parametro para remover do carrinho foi enviado
+//
+//        if (insertId != null) {
+//            Alimento alimentoFound = service.getOne(insertId);
+//            if (alimentoFound != null) {
+//                shoppingCartList.add(alimentoFound);
+//            }
+//        }
+//        session.setAttribute("shoppingCartList", shoppingCartList);
+//        modelAndView.addObject("shoppingCartList", shoppingCartList);
+//        return modelAndView;
 //    }
-
 }

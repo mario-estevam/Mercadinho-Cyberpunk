@@ -21,6 +21,7 @@
             <th scope="col">Tipo</th>
             <th scope="col">Peso</th>
             <th scope="col">Fornecedor</th>
+            <th scope="col">Imagem</th>
         </tr>
         <tr th:each="alimento : ${listaAlimentos}">
             <td th:text="${alimento.id}">ID</td>
@@ -29,8 +30,8 @@
             <td th:text="${alimento.peso}">Peso</td>
             <td th:text="${alimento.fornecedor}">Fornecedor</td>
             <td><img width="100px" th:src="@{'/images/' + ${alimento.getImagemUri()}}" alt="imagem"/></td>
-            <td><a th:href="@{'/deletar/' + ${alimento.id}}">Deletar </a></td>
-            <td><a th:href="@{'/editar/' + ${alimento.id}}">Editar </a></td>
+            <td><a class="btn btn-warning" role="button" th:href="@{'/deletar/' + ${alimento.id}}">Deletar </a></td>
+            <td><a class="btn btn-info"  role="button" th:href="@{'/editar/' + ${alimento.id}}">Editar </a></td>
 
         </tr>
     </table>
