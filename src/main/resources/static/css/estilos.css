@@ -2,7 +2,6 @@
     padding: 10vh;
     margin: 5vh;
 }
-
 .navbar-brand{
     padding-left: 10vh;
 }
@@ -46,4 +45,28 @@ label{
 fieldset{
     text-align: justify;
     justify-content: center;
+}
+
+#centralizar{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.titulo{
+    color: crimson;
+}
+
+.inline{
+    display: flex;
+    display: inline-block;
+}
+
+.altura{
+    padding-left: 10vh;
+    padding-right: 10vh;
+    height: 40%;
+    width: 30%;
 }

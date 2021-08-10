@@ -42,27 +42,19 @@ public class alimentoController {
 
 
 
-    @RequestMapping(value = {"/", "/Alimento"},  method = RequestMethod.GET)
-    public String getHome(Model model){
-        var listaAlimentos = service.findAll();
+    @RequestMapping(value = {"/index" , "/"}, method = RequestMethod.GET)
+    public String homePage(Model model, HttpServletResponse response) {
+        List<Alimento> listaAlimentos = this.service.findAll();
         model.addAttribute("listaAlimentos", listaAlimentos);
+        SimpleDateFormat date_formatter = new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss:SSS");
+        Date date = new Date();
+        Cookie cookie = new Cookie("visita", date_formatter.format(date));
+        cookie.setMaxAge(60*60*24);
+        response.addCookie(cookie);
         return "index";
     }
 
-    @RequestMapping(value = "/")
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        HttpSession session = request.getSession();
-        var out = response.getWriter();
-        var dataCriacao = new Date(session.getCreationTime());
-        var dataUltimoAcesso = new Date((session.getLastAccessedTime()));
-        var formatData = new SimpleDateFormat("dd/MM/yyyy--hh:mm:ss");
-
-        Cookie c = new Cookie("visita", formatData.format(dataCriacao));
-        c.setMaxAge(60*60*24);
-        response.addCookie(c);
-        out.println("Ultimo acesso: " +formatData.format(dataCriacao));
-    }
 
     @RequestMapping(value = {"/admin" }, method = RequestMethod.GET)
     public String getAdmin(Model model){
@@ -83,8 +75,6 @@ public class alimentoController {
         if (errors.hasErrors()){
             return "cadastro";
         }else{
-
-
             alimento.setImagemUri(file.getOriginalFilename());
             service.save(alimento);
             fileStorageService.save(file);
@@ -97,7 +87,7 @@ public class alimentoController {
     @RequestMapping("/deletar/{id}")
     public String doDelete(@PathVariable(name = "id") Long id){
         service.delete(id);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @RequestMapping("/editar/{id}")

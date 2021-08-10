@@ -21,10 +21,9 @@
             <label>Tipo:</label> <input type="text" name="tipo" th:field="*{tipo}"> <br />
             <p class="erro" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"> </p>
             <label>Peso:</label> <input type="text" name="peso" th:field="*{peso}"> <br />
-            <label>Fornecedor:</label> <input type="text" name="fornecedor" th:field="*{fornecedor}"> <br />
+            <label>Preco:</label> <input type="text" name="preco" th:field="*{preco}"> <br />
             <label>Imagem:</label> <input type="file" name="file"/><br />
             <button type="submit">Enviar</button>
-
         </fieldset>
     </form>
 </div>

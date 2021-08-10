@@ -24,10 +24,10 @@ public class Alimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String nome;
-    @Size(min = 3, max = 10, message = Mensagem.ERRO_TAMANHO_STRING)
+    @Size(min = 3, max = 10, message = Mensagem.ERRO_TAMANHO_TIPO)
     String tipo;
     String peso;
-    String fornecedor;
+    String preco;
     String imagemUri;
-    Date deleted;
+    Date delete = null;
 }

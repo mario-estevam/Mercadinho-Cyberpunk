@@ -2,9 +2,12 @@ package com.example.alimentos.service;
 
 import com.example.alimentos.model.Alimento;
 import com.example.alimentos.repository.AlimentoRepository;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,7 +21,7 @@ public class AlimentoService {
     }
 
     public List<Alimento> findAll(){
-        return repository.findAll();
+        return repository.findAllByDeleteIsNull();
     }
 
     public void save(Alimento a){
@@ -26,15 +29,17 @@ public class AlimentoService {
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        Alimento alimento = repository.getById(id);
+        alimento.setDelete(date);
+        repository.save(alimento);
     }
 
     public Alimento findById(Long id){
         return repository.getById(id);
     }
 
-    public Alimento getOne(Long id) {
-        return this.repository.getOne(id);
-    }
+
 
 }

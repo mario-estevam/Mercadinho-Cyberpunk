@@ -20,10 +20,13 @@
             <fieldset>
                 <legend>Formulario de Cadastro de alimentos</legend>
                 <label>Nome: </label> <input type="text" name="nome" th:field="*{nome}"> <br />
+                <p class="erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"> </p>
                 <label>Tipo:</label> <input type="text" name="tipo" th:field="*{tipo}"> <br />
                 <p class="erro" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"> </p>
                 <label>Peso:</label> <input type="text" name="peso" th:field="*{peso}"> <br />
-                <label>Fornecedor:</label> <input type="text" name="fornecedor" th:field="*{fornecedor}"> <br />
+                <p class="erro" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}"> </p>
+                <label>Preco:</label> <input type="text" name="preco" th:field="*{preco}"> <br />
+                <p class="erro" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"> </p>
                 <label>Imagem:</label> <input type="file" name="file"/><br />
                 <button type="submit">Enviar</button>
             </fieldset>
