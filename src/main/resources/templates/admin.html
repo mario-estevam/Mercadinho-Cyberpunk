@@ -13,6 +13,8 @@
 
 <p class="doAdmin"> <center> <a href="/cadastro" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cadastrar Novo Alimento</a> </center> </p>
 
+<center><p class="alert alert-primary par" role="alert" th:text="${#request.getParameter('msg')}"></p></center>
+
 <div class="home">
     <p><center>Lista de Alimentos Cadastrados</center></p>
     <table  class="table table-dark">

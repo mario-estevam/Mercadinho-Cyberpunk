@@ -98,6 +98,31 @@ public class alimentoController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/adicionarCarrinho/{id}", method = RequestMethod.GET)
+    public String getAdicionarCarrinho(@PathVariable(name = "id") Long id, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("carrinho")==null){
+            session.setAttribute("carrinho", new ArrayList<Alimento>());
+        }
+        ArrayList<Alimento> ali = (ArrayList<Alimento>)session.getAttribute("carrinho");
+        ali.add(service.findById(id));
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
+    public String getCarrinho(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("carrinho") != null){
+            List<Alimento> list = (List<Alimento>)session.getAttribute("carrinho");
+            model.addAttribute("listacarrinho",list);
+            System.out.println("compras" + list.toString());
+            return "cart";
+        }
+        else {
+            return "redirect:/admin";
+        }
+    }
+
 //    @RequestMapping("/adicionarcarrinho")
 //    public ModelAndView getHome(HttpSession session, @RequestParam(required = false) Long insertId, @RequestParam(required = false) Long removeId, @RequestParam(required = false) String message) {
 //        ModelAndView modelAndView = new ModelAndView("index");

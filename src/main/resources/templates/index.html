@@ -15,34 +15,53 @@
 <div  data-aos="fade-right" data-aos-duration="2000" >
 	<p><strong><center>Lista de Alimentos Cadastrados</center></strong></p>
 
-<div class="altura">
-	<div  class="card altura" style="width: 18rem;" th:each="alimento : ${listaAlimentos}">
+<div>
+	<center>
+		<form  class="card container px-4 px-lg-5 mt-5" style="width: 15rem; display: inline-block;"  th:each="alimento : ${listaAlimentos}">
 
-		<div class="card-body" >
-			<p><img width="100px" th:src="@{'/images/' + ${alimento.getImagemUri()}}" alt="imagem"/></p>
-			<div class="titulo">ID:</div>
-			<p th:text="${alimento.id}">ID</p>
-			<div class="titulo">Nome:</div>
-			<p th:text="${alimento.nome}">Nome</p>
-			<div class="titulo">Tipo:</div>
-			<p th:text="${alimento.tipo}">Tipo</p>
-			<div class="titulo">Peso:</div>
-			<p th:text="${alimento.peso}">Peso</p>
-			<div class="titulo">Preço R$:</div>
-			<p th:text="${alimento.preco}">Preco:</p>
-			<p><a class="btn btn-danger"  role="button" th:href="@{'/adicionarcarrinho?insertId=' + *{alimento.id}}">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-					<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-				</svg>
-				Adicionar ao Carrinho
-			</a>
+			<div class="card-body"  >
+				<p><img width="100px" th:src="@{'/images/' + ${alimento.getImagemUri()}}" alt="imagem"/></p>
+				<div class="titulo">ID:</div>
+				<p th:text="${alimento.id}">ID</p>
+				<div class="titulo">Nome:</div>
+				<p th:text="${alimento.nome}">Nome</p>
+				<div class="titulo">Tipo:</div>
+				<p th:text="${alimento.tipo}">Tipo</p>
+				<div class="titulo">Peso:</div>
+				<p th:text="${alimento.peso}">Peso</p>
+				<div class="titulo">Preço R$:</div>
+				<p th:text="${alimento.preco}">Preco:</p>
+				<p><a class="btn btn-danger"  role="button" th:href="@{'/adicionarCarrinho?insertId=' + *{alimento.id}}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+						<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+					</svg>
+					Adicionar ao Carrinho
+				</a>
+				</p>
+			</div>
+
+		</form>
+	</center>
+
+</div>
+
+</div>
+
+
+<center class="cyber">
+	<div >
+		<center>
+			<p class="textoCyber">
+				Só Alimento de Q U A L I D A D E !
 			</p>
-		</div>
-
+		</center>
+		<p>
+			<a href="https://imgur.com/7a8xp6W"><img src="https://i.imgur.com/7a8xp6W.gif" style="width:10%;" title="source: imgur.com" /></a>
+		</p>
 	</div>
-</div>
+</center>
 
-</div>
+
 
 <div class="nova">
 	<div th:replace="fragments/commons :: footer"></div>

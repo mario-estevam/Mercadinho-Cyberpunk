@@ -28,6 +28,7 @@
                 <label>Preco:</label> <input type="text" name="preco" th:field="*{preco}"> <br />
                 <p class="erro" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"> </p>
                 <label>Imagem:</label> <input type="file" name="file"/><br />
+
                 <button type="submit">Enviar</button>
             </fieldset>
         </form>

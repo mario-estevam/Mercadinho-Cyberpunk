@@ -23,10 +23,15 @@ public class Alimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NotBlank(message = Mensagem.NAME_BLANK)
+    @Size(min = 3, max = 20, message = Mensagem.ERRO_TAMANHO_NOME)
     String nome;
+    @NotBlank(message = Mensagem.NAME_BLANK)
     @Size(min = 3, max = 10, message = Mensagem.ERRO_TAMANHO_TIPO)
     String tipo;
+    @NotBlank(message = Mensagem.NAME_BLANK)
     String peso;
+    @NotBlank(message = Mensagem.NAME_BLANK_PRECO)
     String preco;
     String imagemUri;
     Date delete = null;
