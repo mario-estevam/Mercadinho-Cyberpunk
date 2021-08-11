@@ -3,7 +3,10 @@ package com.example.alimentos.controller;
 import com.example.alimentos.model.Alimento;
 import com.example.alimentos.repository.FileStorageService;
 import com.example.alimentos.service.AlimentoService;
+import net.bytebuddy.build.HashCodeAndEqualsPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.HashCodeCustomizer;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,9 +23,11 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class alimentoController {
@@ -75,9 +80,12 @@ public class alimentoController {
         if (errors.hasErrors()){
             return "cadastro";
         }else{
-            alimento.setImagemUri(file.getOriginalFilename());
+
+            Integer  aleatorio = new Integer(hashCode());
+
+            alimento.setImagemUri(aleatorio + file.getOriginalFilename());
             service.save(alimento);
-            fileStorageService.save(file);
+            fileStorageService.save(file,aleatorio);
 
             redirectAttributes.addAttribute("msg", "Cadastro realizado com sucesso");
             return "redirect:/admin";

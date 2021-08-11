@@ -10,6 +10,9 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Random;
 import java.util.stream.Stream;
 
 import org.springframework.core.io.Resource;
@@ -34,9 +37,9 @@ public class FileStorageService{
         }
     }
 
-    public void save(MultipartFile file) {
+    public void save(MultipartFile file, Integer aleatorio) {
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), this.root.resolve(aleatorio + file.getOriginalFilename()));
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
