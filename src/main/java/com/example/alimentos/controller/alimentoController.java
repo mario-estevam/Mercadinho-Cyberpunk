@@ -98,52 +98,42 @@ public class alimentoController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/adicionarCarrinho/{id}", method = RequestMethod.GET)
-    public String getAdicionarCarrinho(@PathVariable(name = "id") Long id, Model model, HttpServletRequest request){
+
+    @RequestMapping("/adicionarCarrinho/{id}")
+    public String getCarrinho(@PathVariable(name = "id") Long id, HttpServletRequest request){
+
         HttpSession session = request.getSession();
+
         if(session.getAttribute("carrinho")==null){
             session.setAttribute("carrinho", new ArrayList<Alimento>());
         }
-        ArrayList<Alimento> ali = (ArrayList<Alimento>)session.getAttribute("carrinho");
-        ali.add(service.findById(id));
+        System.out.println(service.findById(id));
+        ArrayList<Alimento> productsCar = (ArrayList<Alimento>) session.getAttribute("carrinho");
+        productsCar.add(service.findById(id));
+        System.out.println("");
         return "redirect:/";
+
     }
 
-    @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
+    @RequestMapping("/verCarrinho")
     public String getCarrinho(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
-        if(session.getAttribute("carrinho") != null){
-            List<Alimento> list = (List<Alimento>)session.getAttribute("carrinho");
-            model.addAttribute("listacarrinho",list);
-            System.out.println("compras" + list.toString());
-            return "cart";
+        if(session.getAttribute("carrinho")==null){
+            return "redirect:/";
         }
-        else {
-            return "redirect:/admin";
-        }
+        System.out.println(service.findAll());
+        ArrayList<Alimento> ali = (ArrayList<Alimento>) session.getAttribute("carrinho");
+        model.addAttribute("listarCarrinho",ali);
+        System.out.println(ali);
+        return "carrinho";
+
     }
 
-//    @RequestMapping("/adicionarcarrinho")
-//    public ModelAndView getHome(HttpSession session, @RequestParam(required = false) Long insertId, @RequestParam(required = false) Long removeId, @RequestParam(required = false) String message) {
-//        ModelAndView modelAndView = new ModelAndView("index");
-//
-//        List<Alimento> alimento = service.findAll();
-//        modelAndView.addObject("alimento", alimento);
-//
-//        ArrayList<Alimento> shoppingCartList = (ArrayList<Alimento>) session.getAttribute("shoppingCartList");
-//        if (shoppingCartList == null) {
-//            shoppingCartList = new ArrayList<>();
-//        }
-//        // se o parametro para remover do carrinho foi enviado
-//
-//        if (insertId != null) {
-//            Alimento alimentoFound = service.getOne(insertId);
-//            if (alimentoFound != null) {
-//                shoppingCartList.add(alimentoFound);
-//            }
-//        }
-//        session.setAttribute("shoppingCartList", shoppingCartList);
-//        modelAndView.addObject("shoppingCartList", shoppingCartList);
-//        return modelAndView;
-//    }
+    @RequestMapping("/finalizar")
+    public void doFinalizar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        response.sendRedirect("/");
+    }
+
 }

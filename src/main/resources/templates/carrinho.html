@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mercadinho</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link th:href="@{/css/estilos.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+<div th:replace="fragments/commons :: header"></div>
+
+<div  data-aos="fade-right" data-aos-duration="2000" >
+    <p><strong><center>Lista de Alimentos Cadastrados</center></strong></p>
+
+    <div>
+        <center>
+            <form  class="card container px-4 px-lg-5 mt-5" style="width: 15rem; display: inline-block;"  th:each="alimento : ${listarCarrinho}">
+
+                <div class="card-body"  >
+                    <p><img width="100px" th:src="@{'/images/' + ${alimento.getImagemUri()}}" alt="imagem"/></p>
+                    <div class="titulo">ID:</div>
+                    <p th:text="${alimento.id}">ID</p>
+                    <div class="titulo">Nome:</div>
+                    <p th:text="${alimento.nome}">Nome</p>
+                    <div class="titulo">Tipo:</div>
+                    <p th:text="${alimento.tipo}">Tipo</p>
+                    <div class="titulo">Peso:</div>
+                    <p th:text="${alimento.peso}">Peso</p>
+                    <div class="titulo">Preço R$:</div>
+                    <p th:text="${alimento.preco}">Preco:</p>
+                </div>
+
+            </form>
+        </center>
+
+       <center class="finalizar">
+           <a class="btn btn-danger"  role="button" href="/finalizar" > Finalizar Compra  </a>
+       </center>
+
+    </div>
+
+</div>
+
+
+<center class="cyber">
+    <div >
+        <center>
+            <p class="textoCyber">
+               Obrigado pela preferência!!
+            </p>
+        </center>
+        <p>
+            <a href="https://imgur.com/sgBuZgi"><img src="https://i.imgur.com/sgBuZgi.gif" style="width:20%;" title="source: imgur.com" /></a>
+        </p>
+    </div>
+</center>
+
+
+<div class="nova">
+    <div th:replace="fragments/commons :: footer"></div>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
