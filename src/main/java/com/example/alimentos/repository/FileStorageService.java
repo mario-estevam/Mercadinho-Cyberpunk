@@ -37,7 +37,7 @@ public class FileStorageService{
         }
     }
 
-    public void save(MultipartFile file, Integer aleatorio) {
+    public void save(MultipartFile file, Double aleatorio) {
         try {
             Files.copy(file.getInputStream(), this.root.resolve(aleatorio + file.getOriginalFilename()));
         } catch (Exception e) {

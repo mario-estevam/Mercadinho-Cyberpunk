@@ -75,26 +75,33 @@ public class alimentoController {
         return "cadastro";
     }
 
+
+
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)
     public String doSalvar(@ModelAttribute @Valid Alimento alimento, Errors errors,  @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
         if (errors.hasErrors()){
             return "cadastro";
         }else{
-
-            Integer  aleatorio = new Integer(hashCode());
-
-            alimento.setImagemUri(aleatorio + file.getOriginalFilename());
+            if(file.isEmpty()){
+                String image = this.service.findById(alimento.getId()).getImagemUri();
+                alimento.setImagemUri(image);
+            }else{
+                Random random = new Random();
+                Double aleatorio = random.nextDouble();
+                alimento.setImagemUri(aleatorio + file.getOriginalFilename());
+                fileStorageService.save(file, aleatorio);
+            }
             service.save(alimento);
-            fileStorageService.save(file,aleatorio);
-
             redirectAttributes.addAttribute("msg", "Cadastro realizado com sucesso");
+
             return "redirect:/admin";
         }
     }
 
     @RequestMapping("/deletar/{id}")
-    public String doDelete(@PathVariable(name = "id") Long id){
+    public String doDelete(@PathVariable(name = "id") Long id, RedirectAttributes redirectAttributes){
         service.delete(id);
+        redirectAttributes.addAttribute("msg", "Deletado com sucesso");
         return "redirect:/admin";
     }
 
