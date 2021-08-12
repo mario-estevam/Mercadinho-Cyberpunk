@@ -76,7 +76,7 @@ public class alimentoController {
     }
 
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)
-    public String doSalvar(@ModelAttribute @Valid Alimento alimento, Errors errors, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
+    public String doSalvar(@ModelAttribute @Valid Alimento alimento, Errors errors,  @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
         if (errors.hasErrors()){
             return "cadastro";
         }else{

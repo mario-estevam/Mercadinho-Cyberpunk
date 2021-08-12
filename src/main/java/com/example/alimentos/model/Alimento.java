@@ -5,6 +5,7 @@ import com.example.alimentos.message.Mensagem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.engine.spi.ManagedEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -33,6 +34,7 @@ public class Alimento {
     String peso;
     @NotBlank(message = Mensagem.NAME_BLANK_PRECO)
     String preco;
+
     String imagemUri;
     Date delete = null;
 }
