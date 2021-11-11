@@ -1,7 +1,7 @@
 # Link do site
 implantação do site feita no heroku
 
-<a href="atvd.herokuapp.com"> Mercadinho </a>
+<a> atvd.herokuapp.com </a>
 
 # AVALIAÇÃO 2 DE PROGRAMAÇÃO WEB
 
