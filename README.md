@@ -1,3 +1,8 @@
+# Link do site
+implantação do site feita no heroku
+
+<a href="atvd.herokuapp.com"> Mercadinho </a>
+
 # AVALIAÇÃO 2 DE PROGRAMAÇÃO WEB
 
 tema: Alimentos
@@ -10,7 +15,4 @@ Foi desenvolvido um site em Spring Boot com a temática de alimentos, simulando 
 
 <center> <a href="https://imgur.com/a/UgxRjxv"><img src="https://i.imgur.com/mqHUDAT.png" title="source: imgur.com" /></a> </center>
 
-# Link do site
-implantação do site feita no heroku
 
-atvd.herokuapp.com
