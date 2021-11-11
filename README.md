@@ -1,7 +1,7 @@
 # Link do site
 implantação do site feita no heroku
 
-<a> atvd.herokuapp.com </a>
+<p> http://atvd.herokuapp.com </p>
 
 # AVALIAÇÃO 2 DE PROGRAMAÇÃO WEB
 
