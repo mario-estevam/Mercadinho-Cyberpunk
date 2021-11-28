@@ -7,6 +7,9 @@ implantação do site feita no heroku
 
 <ul>
   <li> Spring boot </li>
+  <li> thymeleaf </li>
+  <li> postgresql </li>
+  <li> lombok </li>
 
 # AVALIAÇÃO 2 DE PROGRAMAÇÃO WEB
 
